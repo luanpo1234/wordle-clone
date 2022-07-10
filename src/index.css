@@ -1,4 +1,11 @@
+:root {
+  --wrong-letter-bg-color: grey;
+  --right-letter-bg-color: yellow;
+  --right-pos-letter-bg-color: green;
+}
+
 body {
+  padding: 100px 200px 100px 200px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +17,41 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.keyboard {
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  padding: 15px;
+}
+
+.keyboard-key {
+  background-color: lightgrey;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 650;
+  text-align: center;
+  padding: 25px;
+}
+
+.game-word {
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 15px;
+  margin: auto 500px auto 500px; /*gambiarra*/
+}
+
+.game-letter {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid lightgrey;
+  font-size: 35px;
+  font-weight: 650;
+  text-align: center;
+  padding: 25px;
 }
