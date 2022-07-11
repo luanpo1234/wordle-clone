@@ -16,5 +16,7 @@ Based on [nytimes.com/wordle](https://www.nytimes.com/wordle).
 
 <img src="example.png" height=350px width=auto alt="Won game" />
 
+***
+
 ### Word not found animation
 ![Word not found animation.](/word-not-found.gif)
