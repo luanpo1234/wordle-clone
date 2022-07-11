@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 
 const GameWord = (props) => {
     return (
-    <div className="game-word">
+    <div className={`game-word ${props.shake}`}>
        {props.word.letters.map(
         (letter, index) => 
         <GameLetter 

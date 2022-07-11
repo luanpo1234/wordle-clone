@@ -33,6 +33,7 @@ function App() {
   console.log(rightWord);
   //const [rightWord, setRightWord] = useState("geese".toUpperCase().split(""));
   const [gameOver, setGameOver] = useState(false);
+  const [shakeWord, setShakeWord] = useState();
   const [usedLetters, setUsedLetters] = useState({
     "wrongLetters"    : [],
     "rightLetters"    : [],
@@ -79,19 +80,24 @@ function App() {
         ? {...elmt, isDone:true}
         : elmt
       ));
-      words[currTry]["letters"].join("") === rightWord.join("") && endGame(true);
-      currTry === numWords -1 && endGame(false);
+      if (words[currTry]["letters"].join("") === rightWord.join("")) {
+        endGame(true)
+      } else if (currTry === numWords -1) {
+        endGame(false)
+      };
       setCurrTry(prevTry => prevTry + 1)
      // setNumRounds(prevNum => prevNum + 1);
      // setUsedLetters(prevLetters => prevLetters.concat(words[currTry]["letters"]))
       } else {
         setMessage("Word not found!");
+        setShakeWord(currTry);
       }
     }
   }
 
   const handleInput = input => {
     if (!gameOver) {
+      setShakeWord();
       if (validLetters.includes(input.toUpperCase())) {
         input = input.toUpperCase();
         setMessage("");
@@ -126,7 +132,11 @@ function App() {
   return (
     <div className="App">
       <Message message={message} />
-      <GameGrid words={words} rightWord={rightWord} />
+      <GameGrid 
+        words={words}
+        rightWord={rightWord}
+        shakeWord={shakeWord}
+        />
       <Keyboard handleInput={handleInput} usedLetters={usedLetters} />
     </div>
   );
