@@ -12,7 +12,7 @@ Based on [nytimes.com/wordle](https://www.nytimes.com/wordle).
 
 ## Examples
 
-### Won Game
+### Won game
 
 ![Won game.](/example.png)
 
