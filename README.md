@@ -6,9 +6,9 @@ Based on [nytimes.com/wordle](https://www.nytimes.com/wordle).
 
 
 * Guess a 5-letter word with 6 tries.
-* Green represents a right word in the right position.
-* Yellow represents a right word in the wrong position.
-* Grey means the word doesn't contain the letter.
+* <span background-color=green>Green</span> represents a right word in the right position.
+* <span background-color=#cc8800>Yellow(-ish)</span> represents a right word in the wrong position.
+* <span background-color=grey>Grey</span> means the word doesn't contain the letter.
 
 ## Examples
 
@@ -16,7 +16,6 @@ Based on [nytimes.com/wordle](https://www.nytimes.com/wordle).
 
 <img src="example.png" height=350px width=auto alt="Won game" />
 
-***
 
 ### Word not found animation
 ![Word not found animation.](/word-not-found.gif)
