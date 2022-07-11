@@ -6,8 +6,11 @@
 }
 
 body {
-  padding: 100px 200px 100px 200px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   margin: 0;
+  padding: 5vw 10vwpx 5vw 10vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -15,56 +18,61 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* .App {
+  max-height: 100%;
+  max-width: auto;
+} */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .keyboard {
-  margin: 70px auto;
+  margin: 1.5vw auto;
   display: grid;
   text-align: center;
   grid-template-columns: repeat(10, 1fr);
-  gap: 10px;
-  padding: 15px;
+  gap: 0.5vw;
+  padding: 0.75vw 15vw;
 }
 
 .keyboard-key {
+  height: 1vw;
   background-color: lightgrey;
   cursor: pointer;
-  border-radius: 10px;
-  font-size: 25px;
+  border-radius: 0.5vw;
+  font-size: 1vw;
   font-weight: 650;
   text-align: center;
-  padding: 25px;
+  padding: 1.25vw;
 }
 
 .game-word {
-  width: 500px;
+  width: 25.0vw;
   display: grid;
   text-align: center;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  padding: 5px;
+  gap: 0.5vw;
+  padding: 0.25vw;
   margin: auto;
 }
 
 .game-letter {
-  width: 50px;
-  height: 50px;
+  width: 1.5vw;
+  height: 1.5vw;
   background-color: white;
   border: 1px solid lightgrey;
-  font-size: 35px;
+  font-size: 1.5vw;
   font-weight: 650;
   text-align: center;
-  padding: 25px;
+  padding: 1.6vw;
 }
 
 .message {
   height: 1.8em;
-  margin-bottom: 100px;
+  margin-bottom: 5.0vw;
   text-align: center;
-  font-size: 25px;
+  font-size: 1.25vw;
 }
 
 .shake-word {

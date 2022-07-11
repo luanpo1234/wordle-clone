@@ -10,7 +10,7 @@ function App() {
   //Constants:
   //
   const numLetters = 5;
-  const numWords = 5;
+  const numWords = 6;
 
   // States:
   //
