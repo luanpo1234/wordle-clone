@@ -97,7 +97,7 @@ function App() {
 
   const handleInput = input => {
     if (!gameOver) {
-      setShakeWord();
+      setShakeWord(); //Making sure shake animation runs only once
       if (validLetters.includes(input.toUpperCase())) {
         input = input.toUpperCase();
         setMessage("");
