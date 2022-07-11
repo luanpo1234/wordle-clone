@@ -14,7 +14,7 @@ Based on [nytimes.com/wordle](https://www.nytimes.com/wordle).
 
 ### Won game
 
-![Won game.](/example.png)
+<img src="example.png" height=10vh width=auto alt="Won game" />
 
 ### Word not found animation
 ![Word not found animation.](/word-not-found.gif)
