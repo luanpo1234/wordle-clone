@@ -1,5 +1,6 @@
 import Keyboard from "./components/Keyboard";
 import GameGrid from "./components/GameGrid";
+import Message from "./components/Message";
 import { useState, useEffect } from "react";
 import { validLetters } from "./globalVars";
 import { wordList } from "./wordList";
@@ -10,7 +11,6 @@ function App() {
   //
   const numLetters = 5;
   const numWords = 5;
-  //const rightWord= ["P", "R", "E", "G", "O"];
 
   // States:
   //
@@ -30,12 +30,15 @@ function App() {
   const [words, setWords] = useState(createWords(numWords, numLetters));
   const [currTry, setCurrTry] = useState(0);
   const [rightWord, setRightWord] = useState(wordList[Math.floor(Math.random()*wordList.length)].split(""));
+  console.log(rightWord);
   //const [rightWord, setRightWord] = useState("geese".toUpperCase().split(""));
+  const [gameOver, setGameOver] = useState(false);
   const [usedLetters, setUsedLetters] = useState({
     "wrongLetters"    : [],
     "rightLetters"    : [],
     "rightPosLetters" : []
   });
+  const [message, setMessage] = useState();
   //const [numRounds, setNumRounds] = useState(0); // !!! Sem isso os componentes não rerenderizam, arruma depois
 
   //Functions:
@@ -59,6 +62,12 @@ function App() {
     })
   }
 
+  const endGame = (won) => {
+    setGameOver(true);
+    const message = won ? "You won!" : `Game over! The word was ${rightWord.join("")}.`;
+    setMessage(message);
+  }
+
   const submitWord = () => {
     if (isFull(words[currTry]["letters"])) {
       if (wordList.includes(words[currTry]["letters"].join(""))) {
@@ -70,51 +79,53 @@ function App() {
         ? {...elmt, isDone:true}
         : elmt
       ));
-      words[currTry]["letters"].join("") === rightWord.join("") && alert("Você ganhou!!!");
+      words[currTry]["letters"].join("") === rightWord.join("") && endGame(true);
+      currTry === numWords -1 && endGame(false);
       setCurrTry(prevTry => prevTry + 1)
      // setNumRounds(prevNum => prevNum + 1);
      // setUsedLetters(prevLetters => prevLetters.concat(words[currTry]["letters"]))
       } else {
-        alert("Palavra não encontrada!");
+        setMessage("Word not found!");
       }
     }
   }
 
   const handleInput = input => {
-    if (validLetters.includes(input.toUpperCase())) {
-      input = input.toUpperCase();
+    if (!gameOver) {
+      if (validLetters.includes(input.toUpperCase())) {
+        input = input.toUpperCase();
+        setMessage("");
+        const currWords = structuredClone(words);
+        currWords[currTry]["letters"][currWords[currTry]["letters"].indexOf("")] = input; //Getting first empty item in words.letters, setting it to input
+      // setNumRounds(prevNum => prevNum + 1);
+        setWords(currWords);
+    } else if (input === "Backspace"){
+      const index = 
+        isFull(words[currTry]["letters"]) ?
+        words[currTry]["letters"].length-1 : 
+        words[currTry]["letters"].indexOf("")-1;
       const currWords = structuredClone(words);
-      currWords[currTry]["letters"][currWords[currTry]["letters"].indexOf("")] = input; //Getting first empty item in words.letters, setting it to input
-     // setNumRounds(prevNum => prevNum + 1);
+      currWords[currTry]["letters"][index] = "";
       setWords(currWords);
-  } else if (input === "Backspace"){
-    const index = 
-      isFull(words[currTry]["letters"]) ?
-      words[currTry]["letters"].length-1 : 
-      words[currTry]["letters"].indexOf("")-1;
-    const currWords = structuredClone(words);
-    currWords[currTry]["letters"][index] = "";
-    setWords(currWords);
-  } else if (input === "Enter") {
-    submitWord()
+    } else if (input === "Enter") {
+      submitWord()
+    }
   }
 };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    // Clean up this component
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
+    if (!gameOver) {
+      window.addEventListener('keydown', handleKeyDown);
+      // Clean up this component
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      }
+    }
   }, [handleKeyDown]);
-
-  // Só testando, tira depois
-  useEffect(() => {
-    console.log(rightWord);
-  }, []);
 
   return (
     <div className="App">
+      <Message message={message} />
       <GameGrid words={words} rightWord={rightWord} />
       <Keyboard handleInput={handleInput} usedLetters={usedLetters} />
     </div>
