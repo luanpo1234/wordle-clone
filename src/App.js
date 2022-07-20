@@ -9,8 +9,8 @@ import { nanoid } from "nanoid";
 function App() {
   //Constants:
   //
-  const numLetters = 5;
-  const numWords = 6;
+  const NUM_LETTERS = 5;
+  const NUM_WORDS = 6;
 
   // States:
   //
@@ -27,7 +27,7 @@ function App() {
     return newWords;
   }
 
-  const [words, setWords] = useState(createWords(numWords, numLetters));
+  const [words, setWords] = useState(createWords(NUM_WORDS, NUM_LETTERS));
   const [currTry, setCurrTry] = useState(0);
   const [rightWord, setRightWord] = useState(wordList[Math.floor(Math.random()*wordList.length)].split(""));
   console.log(rightWord);
@@ -82,7 +82,7 @@ function App() {
       ));
       if (words[currTry]["letters"].join("") === rightWord.join("")) {
         endGame(true)
-      } else if (currTry === numWords -1) {
+      } else if (currTry === NUM_WORDS -1) {
         endGame(false)
       };
       setCurrTry(prevTry => prevTry + 1)
